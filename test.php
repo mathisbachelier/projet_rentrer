@@ -6,20 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <p>this worked</p>
+    ah la ca marche
 </body>
 </html>
-<?php
-session_start();
-require_once 'bdd.php';
-
-
-
-if ($_SESSION['mail'] == FALSE  ) {
-
-    header("Location: index.php");
-}
-
-
-?>
-        
