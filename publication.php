@@ -1,3 +1,26 @@
+<?php
+    session_start();
+    require_once ('bdd.php');
+    
+    if(isset($_POST['recette_titre'], $_POST['categories'], $_POST['descriptif_rec'])){
+        $mail = $_SESSION['mail'];
+        $recette_titre = htmlspecialchars($_POST['recette_titre']);
+        $categories = htmlspecialchars($_POST['categories']);
+        $descriptif_rec = htmlspecialchars($_POST['descriptif_rec']);
+
+        
+        $QUERY = ('INSERT INTO `recettes` (nom, categorie, descriptions,id_user_mail, date_publication) VALUES(?, ?, ?, ?, NOW())');
+        $ins = $BDD->prepare($QUERY);
+        $ins->execute(array($recette_titre, $categories, $descriptif_rec,$mail));
+
+        $message = "post bien poster!"; 
+        
+
+    }
+    
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,27 +29,24 @@
     <title>Cook'nShare</title>
 </head>
 <body>
-    <?php
-    session_start();
-    require_once ('bdd.php');
-    ?>
-
     <form method="post">
-        <input type="text" placeholder='le nom de la recette'><br>  
-        <select name="categories" >
+        <input type="text" name="recette_titre" placeholder='le nom de la recette' required><br>  
+        <select name="categories" required>
         <option value="">--choisie la catégorie</option>
         <option value="entré">entré</option>
         <option value="plat">plat</option>
         <option value="desert">desert</option>
         <option value="appéritif">appéritif</option>
         </select><br>
-        <textarea placeholder="descriptif de la recette"></textarea>
-        <form action="upload.php" method="post" enctype="multipart/form-data">
+        <textarea name="descriptif_rec" placeholder="descriptif de la recette" required></textarea>
+        <!-- <form action="upload.php" method="post" enctype="multipart/form-data" required >
         <p>Select image to upload:</p>
         <input type="file" name="fileToUpload" id="fileToUpload">
-        <input type="submit" value="Upload Image" name="submit">
-        </form>
-        <input type="submit" value="envoyer l'article">
+        <input type="submit" value="submit"> -->
+        <!-- </form> -->
+        <br>
+        <input type="submit" value="poster">
+        <?php if(isset($message)) {echo $message;} ?>
     </form>
     
 </body>
