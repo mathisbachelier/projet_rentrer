@@ -2,19 +2,19 @@
     session_start();
     require_once ('bdd.php');
     
-    if(isset($_POST['recette_titre'], $_POST['categories'], $_POST['descriptif_rec'])){
+    if(isset($_POST['recette_titre'], $_POST['categories'], $_POST['descriptif_rec'], $_POST['fileToUpload'])){
         $mail = $_SESSION['mail'];
         $recette_titre = htmlspecialchars($_POST['recette_titre']);
         $categories = htmlspecialchars($_POST['categories']);
         $descriptif_rec = htmlspecialchars($_POST['descriptif_rec']);
+        $files_up = $_POST['fileToUpload'];
 
         
-        $QUERY = ('INSERT INTO `recettes` (nom, categorie, descriptions,id_user_mail, date_publication) VALUES(?, ?, ?, ?, NOW())');
+        $QUERY = ('INSERT INTO `recettes` (nom, categorie, descriptions,id_user_mail, image_publication,date_publication) VALUES(?, ?, ?, ?, ?, NOW())');
         $ins = $BDD->prepare($QUERY);
-        $ins->execute(array($recette_titre, $categories, $descriptif_rec,$mail));
+        $ins->execute(array($recette_titre, $categories, $descriptif_rec,$mail, $files_up));
 
-        $message = "post bien poster!"; 
-        
+        $message = "post bien poster!";
 
     }
     
@@ -39,13 +39,13 @@
         <option value="appéritif">appéritif</option>
         </select><br>
         <textarea name="descriptif_rec" placeholder="descriptif de la recette" required></textarea>
-        <!-- <form action="upload.php" method="post" enctype="multipart/form-data" required >
+        <form action="upload.php" method="post" enctype="multipart/form-data" required >
         <p>Select image to upload:</p>
-        <input type="file" name="fileToUpload" id="fileToUpload">
-        <input type="submit" value="submit"> -->
-        <!-- </form> -->
+        <input type="file" name="fileToUpload" id="fileToUpload"><br>
+        <input type="submit" value="submit">
+        </form>
         <br>
-        <input type="submit" value="poster">
+
         <?php if(isset($message)) {echo $message;} ?>
     </form>
     
