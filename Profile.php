@@ -16,7 +16,12 @@ $publications = $BDD->query('SELECT * FROM recettes WHERE id_user_mail = "'.$_SE
     <ul>
     <?php
     while($p = $publications->fetch()){ ?>
-    <li><a href="post.php?id_recettes_pub=<?= $p['id_recettes_pub']?>"><?= $p['nom']?></a></li>
+    <li>
+
+    <a href="post.php?id_recettes_pub=<?= $p['id_recettes_pub']?>">
+    <img src="asset/.<?= $p['id_recettes_pub'] ?>.jpeg" width=100/> <br>
+    <?= $p['nom']?>
+    </a></li>
 
     <?php }?>
     </ul>

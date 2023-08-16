@@ -11,8 +11,7 @@ if(isset($_GET['id_recettes_pub']) AND !empty($_GET['id_recettes_pub'])){
     if($article->rowcount() == 1){
         $article = $article->fetch();
         $titre = $article['nom'];
-        $contenu = $article['descriptions'];
-        $img_post = $article['image_publication'];
+        $contenu = $article['descriptions'];    
         $date_pub = $article['date_publication'];
 
     }else{
@@ -36,7 +35,10 @@ if(isset($_GET['id_recettes_pub']) AND !empty($_GET['id_recettes_pub'])){
 <body>
     <h1><?= $titre?></h1>
     <p><?=  $contenu ?></p>
-    <img src="<?php $img_post?>" alt="">
+    <img src="asset/.<?= $article['id_recettes_pub'] ?>.jpeg" width=100/> <br>
     <p><?= $date_pub ?></p>
+    <?php
+
+?>
 </body>
 </html>
