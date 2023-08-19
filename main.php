@@ -35,7 +35,7 @@ if ($_SESSION['mail'] == FALSE  ) {
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="main.php">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="Profile.php">Profile</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">firends</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">friends</a></li>
 
                     </ul>
                 </div>

@@ -2,6 +2,8 @@
 session_start();
 require_once('bdd.php');
 
+
+
 if(isset($_GET['id_recettes_pub']) AND !empty($_GET['id_recettes_pub'])){
     $get_id = htmlspecialchars($_GET['id_recettes_pub']);
 
