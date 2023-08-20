@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('bdd.php');
-
+require_once ('unacces.php') ;
 
 
 if(isset($_GET['id_recettes_pub']) AND !empty($_GET['id_recettes_pub'])){

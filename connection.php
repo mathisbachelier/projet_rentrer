@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'bdd.php';
+
 if(isset($_POST['mail']) and isset($_POST['password'])){
     $email = $_POST['mail'];
     $password = $_POST['password'];

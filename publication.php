@@ -1,6 +1,7 @@
 <?php
     session_start();
     require_once ('bdd.php');
+    require_once ('unacces.php') ;
     
     $mode_edition = 0;
 

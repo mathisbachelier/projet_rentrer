@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'bdd.php';
+require_once ('unacces.php') ;
 $publications = $BDD->query('SELECT * FROM recettes WHERE id_user_mail = "'.$_SESSION['mail'].'" ORDER BY id_recettes_pub DESC ');
 
 
@@ -47,7 +48,6 @@ $publications = $BDD->query('SELECT * FROM recettes WHERE id_user_mail = "'.$_SE
 
     <a href="publication.php">publiez votre recette !!</a>
     </ul>
-
-    
+   
 </body>
 </html>
