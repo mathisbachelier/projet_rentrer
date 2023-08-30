@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Blog Home - Start Bootstrap Template</title>
+        <title>Cook'nShare</title>
         <!-- Favicon-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
@@ -36,6 +36,7 @@ if ($_SESSION['mail'] == FALSE  ) {
                         <li class="nav-item"><a class="nav-link" href="main.php">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="Profile.php">Profile</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">friends</a></li>
+                        <li class="nav-item"><a class="nav-link" href="publication.php">post</a></li>
 
                     </ul>
                 </div>
@@ -132,11 +133,14 @@ if ($_SESSION['mail'] == FALSE  ) {
                         <div class="card-header">Search</div>
                         <div class="card-body">
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search">
-                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                                <form action="recherche_utilisateur.php" method="get">
+                                <input class="form-control" name="nome" type="text" id="search-user" placeholder="search an user..." aria-describedby="button-search" >
+                                <input class="btn btn-primary" type="submit" value="search">
+                                </form>
                             </div>
                         </div>
                     </div>
+                    
                     <!-- Categories widget-->
                     <div class="card mb-4">
                         <div class="card-header">Categories</div>
@@ -175,6 +179,8 @@ if ($_SESSION['mail'] == FALSE  ) {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <script>
+
     
 
 </body>
