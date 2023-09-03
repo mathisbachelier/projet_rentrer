@@ -69,6 +69,7 @@
   --bs-link-hover-color: #0a58ca;
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
+
 }
 
 *,
@@ -177,6 +178,7 @@ address {
 ol,
 ul {
   padding-left: 2rem;
+  width: fit-content;
 }
 
 ol,
@@ -3719,8 +3721,8 @@ textarea.form-control-lg {
 
 .navbar {
   --bs-navbar-padding-x: 0;
-  --bs-navbar-padding-y: 0.5rem;
-  --bs-navbar-color: rgba(0, 0, 0, 0.55);
+  --bs-navbar-padding-y: 1rem;
+  --bs-navbar-color: ;
   --bs-navbar-hover-color: rgba(0, 0, 0, 0.7);
   --bs-navbar-disabled-color: rgba(0, 0, 0, 0.3);
   --bs-navbar-active-color: rgba(0, 0, 0, 0.9);

@@ -71,9 +71,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Cook'nShare</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#!">Cook'nShare</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="main.php">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Profile.php">Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="publication.php">post</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
     <form method="post" enctype="multipart/form-data">
         <input type="text" name="recette_titre" placeholder='le nom de la recette' <?php if($mode_edition == 1) {
           ?>  value="<?= $edit_article['nom']?>"<?php } ?> required ><br>  
@@ -82,8 +97,9 @@
         <option value="">--choisie la catégorie</option>
         <option value="entré">entré</option>
         <option value="plat">plat</option>
-        <option value="desert">desert</option>
+        <option value="dessert">dessert</option>
         <option value="appéritif">appéritif</option>
+        <option value="autre">autre</option>
         </select><br>
         <textarea name="descriptif_rec" placeholder="descriptif de la recette" required><?php if($mode_edition == 1) {
           ?><?= $edit_article['descriptions']?><?php }?></textarea>
