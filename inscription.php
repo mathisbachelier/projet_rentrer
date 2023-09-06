@@ -21,7 +21,7 @@ $rows = $stmt->fetchAll();
 if (count($rows)== 0) {
     $preparedStmt= $BDD->prepare("INSERT INTO users (mail,pass,username) VALUES(:mail,SHA1(:pass),:username)");
     $preparedStmt->execute(array(":mail" =>$email, ":pass" =>$password, ":username" =>$username));
-    header('location:main.php');    
+        
 }else{
 
     echo "<script>alert(\"Cet email est déjà utilisé\");</script>";
@@ -29,6 +29,7 @@ if (count($rows)== 0) {
 
 
 }
+header('location: main.php');
   
 
 }

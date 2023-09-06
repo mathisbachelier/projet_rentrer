@@ -1,7 +1,37 @@
 <?php
 session_start();
-require_once('bdd.php');
-require_once ('unacces.php') ;
+require_once 'bdd.php';
+require_once 'unacces.php';
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+<!-- Responsive navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: sticky; top : 0px; z-index : 1; background-color: #6a994e !important;">
+            <div class="container">
+                <a class="navbar-brand" href="#!">Cook'nShare</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="main.php">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Profile.php">Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="publication.php">post</a></li>
+                        <li class="nav-item"><a class="nav-link" href="deconnection.php">logout</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+<?php
 
 
 if(isset($_GET['id_recettes_pub']) AND !empty($_GET['id_recettes_pub'])){
@@ -9,12 +39,20 @@ if(isset($_GET['id_recettes_pub']) AND !empty($_GET['id_recettes_pub'])){
 
     $article = $BDD-> prepare('SELECT * FROM recettes WHERE id_recettes_pub = ?');
     $article->execute(array($get_id));
+    
 
     if($article->rowcount() == 1){
         $article = $article->fetch();
         $titre = $article['nom'];
         $contenu = $article['descriptions'];    
         $date_pub = $article['date_publication'];
+        $intro = $article['intro'];
+        $utilisateur = $article['id_user_mail'];
+        $_SESSION['intro'] = $article['intro'];
+
+        $utili = $BDD-> prepare('SELECT * FROM users WHERE mail = ?');
+        $utili->execute(array($utilisateur));
+        $util = $utili->fetch();
 
     }else{
         die('cet article n\'existe pas ');
@@ -26,21 +64,71 @@ if(isset($_GET['id_recettes_pub']) AND !empty($_GET['id_recettes_pub'])){
 
 
 ?>
+                <header class="py-5 bg-light border-bottom mb-4">
+                    <div class="container">
+                        <div class="text-center my-5">
+                            <h1 class="fw-bolder">voici la recettes de <?= $titre?> de <?= $util['username']?></h1>
+                        </div>
+                    </div>
+                </header>
+<div class="container">
+            <div class="row">
+                <!-- Blog entries-->
+                <div class="col-lg-8">
+                   
+                <img src="asset/.<?= $article['id_recettes_pub'] ?>.jpeg" style="max-width: 850px; border-radius: 10px; margin-bottom: 10px;"/> 
+                <br>    
+                <p><?= $intro?></p>
+                <p><?=  $contenu ?></p>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cook'nShare</title>
-</head>
-<body>
-    <h1><?= $titre?></h1>
-    <p><?=  $contenu ?></p>
-    <img src="asset/.<?= $article['id_recettes_pub'] ?>.jpeg" width=100/> <br>
-    <p><?= $date_pub ?></p>
-    <?php
-
-?>
+                <h6>post publié par <a href="profiles.php?users=<?= $utilisateur?>"><?= $util['username']?></a> le <?= $date_pub ?> </h6>
+                </div>
+                <div class="col-lg-4" >
+                    <!-- Search widget-->
+                    <div class="card mb-4" style="position: sticky; top : 100px;">
+                        <div class="card-header">Search</div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <form action="recherche_utilisateur.php" method="get">
+                                <input class="form-control" name="nome" type="text" id="search-user" placeholder="search a recipe    " aria-describedby="button-search" required >
+                                <input class="btn btn-primary" type="submit" value="search">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Categories widget-->
+                    <div class="card mb-4" style="position: sticky; top : 295px;">
+                        <div class="card-header">Categories</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="categorie.php?id=1">Entré</a></li>
+                                        <li><a href="categorie.php?id=2">Plat</a></li>
+                                        <li><a href="categorie.php?id=3">Dessert</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="categorie.php?id=4">Apperitif</a></li>
+                                        <li><a href="categorie.php?id=5">Autres</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Side widget-->
+                    <div class="card mb-4" style="position: sticky; top : 480px;">
+                        <div class="card-header">Tu es sur la recette de <a href="profiles.php?users=<?= $utilisateur?>"><?= $util['username']?></a></div>
+                        <div class="card-body">N'hésite pas à tester la recettes et peut être que prochainement tu pourras y laisser un commentaire ;)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="py-5 bg-dark" style="background-color: #6a994e !important;">
+            <div class="container"><p class="m-0 text-center text-white">Copyright © CooK'nShare 2023</p></div>
+        </footer>
 </body>
 </html>

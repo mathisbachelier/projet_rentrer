@@ -20,8 +20,11 @@
 session_start();
 require_once 'bdd.php';
 require_once ('unacces.php') ;
-$publications = $BDD->query('SELECT * FROM recettes WHERE id_user_mail = "'.$_SESSION['mail'].'" ORDER BY id_recettes_pub DESC ');
-$tests = $BDD->query('SELECT *  FROM users where mail = "'.$_SESSION['mail'].'" ');
+if(isset($_GET['users']) && !empty($_GET['users'])){
+    $n_user = $_GET['users'];
+
+    $publications = $BDD->query('SELECT * FROM recettes WHERE id_user_mail = "'.$n_user.'" ORDER BY id_recettes_pub DESC ');
+$tests = $BDD->query('SELECT *  FROM users where mail = "'.$n_user.'" ');
 
 $username_u = $tests->fetch();   
 $username = $username_u['username'];
@@ -76,45 +79,7 @@ if ($_SESSION['mail'] == FALSE  ) {
                             <h2 class="card-title"><?= $p['nom']?></h2>
                             <p class="card-text"><?= $p['intro']?></p>
                             <a class="btn btn-primary" href="post.php?id_recettes_pub=<?= $p['id_recettes_pub']?>">Read more →</a>
-                            <a class="btn btn-secondary" href="publication.php?edit=<?= $p['id_recettes_pub']?>">edit</a>
-                            <a class="btn btn-secondary" href="delete.php?id=<?= $p['id_recettes_pub']?>">delete</a>
-                            
-                            
-                            <!-- <div class="dropdown">
-                                <button onclick="myFunction()" class="dropbtn">...
-                                <div id="<?php echo $the_id = $p['id_recettes_pub'] ?>" class="dropdown-content" style="z-index:1;">
-                                    <a href="publication.php?edit=<?= $p['id_recettes_pub']?>">edit</a>
-                                    <a href="delete.php?id=<?= $p['id_recettes_pub']?>">delete</a>
-                                    <script>
-
-                                    function myFunction() {
-                                        var id_user = <?php echo json_encode($the_id)?>;
-                                        document.getElementById(id_user).classList.toggle("show");
-                                    }
-
-
-
-                                    // Close the dropdown if the user clicks outside of it
-                                    window.onclick = function(event) {
-                                    if (!event.target.matches('.dropbtn')) {
-
-                                        var dropdowns = document.getElementsByClassName("dropdown-content");
-                                        var i;
-                                        for (i = 0; i < dropdowns.length; i++) {
-                                        var openDropdown = dropdowns[i];
-                                        if (openDropdown.classList.contains('show')) {
-                                            openDropdown.classList.remove('show');
-                                        }
-                                        }
-                                    }
-                                    }
-                                    </script> -->
-                                <!-- </div> -->
-                                
-                                <!-- </button> -->
-                            
                         </div>
-                        
                     </div>
                 </div>
                 
@@ -197,3 +162,4 @@ if ($_SESSION['mail'] == FALSE  ) {
             }
         </script> -->
 </html>
+<?php }?>
