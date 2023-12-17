@@ -22,7 +22,7 @@
       $nom = $_GET['nome'];
       $_SESSION['nome'] = $nom;
   
-      $req = $BDD->query("SELECT * FROM recettes WHERE nom = '$nom' ");
+      $req = $BDD->query("SELECT * FROM recettes WHERE nom LIKE '%$nom%' ");
 
       }
 

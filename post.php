@@ -79,7 +79,9 @@ if(isset($_GET['id_recettes_pub']) AND !empty($_GET['id_recettes_pub'])){
                 <img src="asset/.<?= $article['id_recettes_pub'] ?>.jpeg" style="max-width: 850px; border-radius: 10px; margin-bottom: 10px;"/> 
                 <br>    
                 <p><?= $intro?></p>
+                <br>
                 <p><?=  $contenu ?></p>
+                <br>
 
                 <h6>post publié par <a href="profiles.php?users=<?= $utilisateur?>"><?= $util['username']?></a> le <?= $date_pub ?> </h6>
                 </div>

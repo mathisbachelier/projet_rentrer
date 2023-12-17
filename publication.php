@@ -93,39 +93,14 @@
                 </div>
             </div>
         </nav>
-    <!-- <form method="post" enctype="multipart/form-data">
-        <input type="text" name="recette_titre" placeholder='le nom de la recette' <?php if($mode_edition == 1) {
-          ?>  value="<?= $edit_article['nom']?>"<?php } ?> required ><br>  
-        <select name="categories" <?php if($mode_edition == 1) {
-          ?> value="<?= $edit_article['categorie']?>"<?php } ?> required>
-        <option value="">--choisie la catégorie</option>
-        <option value="entré">entré</option>
-        <option value="plat">plat</option>
-        <option value="dessert">dessert</option>
-        <option value="appéritif">appéritif</option>
-        <option value="autre">autre</option>
-        </select><br>
-        <textarea name="intro" placeholder="parles nous de ta recette" required><?php if($mode_edition == 1) {
-          ?><?= $edit_article['intro']?><?php }?></textarea>
-          <br>
-        <textarea name="descriptif_rec" placeholder="les instructions de ta recette" required><?php if($mode_edition == 1) {
-          ?><?= $edit_article['descriptions']?><?php }?></textarea>
-
-        <?php if($mode_edition == 0) {
-          ?>
-                  <p>Select image to upload:</p>
-        <input type="file" name="miniature" ><?php } ?> 
-        <br>
-        <input type="submit" value="submit">
-        </form>
-        <br> -->
+    
 
         <?php if(isset($message)) {echo $message;} ?>
     </form>
     <div class="content">
         <div class="container">
             <div class="row align-items-stretch no-gutters contact-wrap">
-            <div class="col-md-12" style="padding-top: 20px; padding-bottom: 20px !important; border: thick double #cdb4db; border-radius: 15px; margin-top: 15px !important ; margin-bottom: 15px !important ;">
+            <div class="col-md-12" style="padding-top: 20px; padding-bottom: 20px !important; border: thick double #70994c; border-radius: 15px; margin-top: 15px !important ; margin-bottom: 15px !important ;">
             <div class="form h-100">
             <h3>Poste ta recette :)<!DOCTYPE html></h3>
             <form class="mb-5" method="post" enctype="multipart/form-data">
